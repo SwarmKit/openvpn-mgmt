@@ -21,7 +21,7 @@ OpenVpn/Google Authenticator  easy user management bash script.
 1.  ./openvpn-mgmt.sh user.name
 2.   approve the new account creation
 3.   choose the user group (ip subnet route spicifed at the vpn conf)
-4.   specify available IP addresses (client and then gateway)
+4.   specify available IP addresses from the chosen group (client and gateway)
 5.   approve the email to send the ovpn config and the barcode.
 
 ## additional options:
