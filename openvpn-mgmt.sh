@@ -36,6 +36,8 @@ AUTH_DIR=/etc/openvpn/google-authenticator/auth
 CCD_DIR=/etc/openvpn/ccd
 
 CCD_FILE=$CCD_DIR/$user_id
+
+ORG_DOMAIN=domainname.com
 # ##############################################################################
 
 function send_mail() {
@@ -54,7 +56,7 @@ function send_mail() {
   else
     echo -en "Please, provide the e-mail of the user\n> "
     #read email
-    read -p ": " -i ${user_id}@yourdomain.com -e email;
+    read -p ": " -i ${user_id}@$ORG_DOMAIN -e email;
     echo "INFO: Sending email"
     echo "Here is your OpenVPN client configuration, Use Google authenticator to scan your QR code $USER_LINK" | mutt -s "Your OpenVPN configuration " -a "$attachment" -- "$email"
   fi
