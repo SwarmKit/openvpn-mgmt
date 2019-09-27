@@ -1,6 +1,7 @@
 # openvpn-mgmt
 OpenVpn/Google Authenticator  easy user management bash script.
 
+
 # Reqiured Packages
 * openvpn
 * easy-rsa
@@ -9,9 +10,13 @@ OpenVpn/Google Authenticator  easy user management bash script.
 
 # Instructions
 * clone the script into desired directory
+* edit base.conf file
 * edit the variables within the script
-* openvpn ccd configuration
+* make sure openvpn ccd is configured.
+* make sure you can send emails .
 
+
+# USAGE
 ## creating new account 
 1.  ./openvpn-mgmt.sh user.name
 2.   approve the new account creation
@@ -25,4 +30,4 @@ OpenVpn/Google Authenticator  easy user management bash script.
 * Resend Token
 * Recreate Token
 * Change User Group
-* Resend email (token and ovpn config)
+* Resend email (token & ovpn config)
