@@ -19,7 +19,7 @@ OpenVpn/Google Authenticator  easy user management shell script.
 4.   write available IP addressess (client and then gateway)
 5.    choose email ot send the ovpn config and google auth scanner .
 
-## addintinal options:
+## additional options:
 ** if running the script for a user that alrady created youll able to choose one of the options below:
 * Delete User
 * Resend Token
