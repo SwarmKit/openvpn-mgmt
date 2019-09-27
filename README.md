@@ -3,6 +3,7 @@ OpenVpn/Google Authenticator  easy user management shell script.
 
 # Reqiured Packages
 * openvpn
+* easy-rsa
 * libpam-google-authenticator
 * mutt
 
