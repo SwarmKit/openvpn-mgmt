@@ -1,5 +1,5 @@
 # openvpn-mgmt
-OpenVpn/Google Authenticator  easy user management shell script.
+OpenVpn/Google Authenticator  easy user management bash script.
 
 # Reqiured Packages
 * openvpn
