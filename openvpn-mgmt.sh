@@ -135,40 +135,45 @@ done
 while [[ $USER_GROUP == '' ]] ; do mainmenu; done
 
 
-
-# Create CCD File
+        function ccd_creation() {
+        # Chose IP addresses for the CCD File
                 echo "INFO: Used ip addresses for $USER_GROUP: ";
-                grep -ho '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /etc/openvpn/ccd/*|grep $DEF_IP;
+                        for i in /etc/openvpn/ccd/* ; do   grep -ho '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-
+9]\{1,3\}' $i | grep $DEF_IP ; done | sort -t . -k 3,3n -k 4,4n ;
+
                 echo "  -==Coose an IP address  (see pattern)  ";
                 echo "[  1,  2] [  5,  6] [  9, 10] [ 13, 14] [ 17, 18]"
                 echo "[ 21, 22] [ 25, 26] [ 29, 30] [ 33, 34] [ 37, 38]"
                 echo "[ 41, 42] [ 45, 46] [ 49, 50] [ 53, 54] [ 57, 58]"
-		echo "[ 61, 62] [ 65, 66] [ 69, 70] [ 73, 74] [ 77, 78]"
-		echo "[ 81, 82] [ 85, 86] [ 89, 90] [ 93, 94] [ 97, 98]"
+                echo "[ 61, 62] [ 65, 66] [ 69, 70] [ 73, 74] [ 77, 78]"
+                echo "[ 81, 82] [ 85, 86] [ 89, 90] [ 93, 94] [ 97, 98]"
                 echo ""
                 read -p "enter an Static ip address for the user: " -i $DEF_IP -e IP;
                 read -p "enter an Gateway ip address for the user: " -i $DEF_IP -e IPGW;
                 echo "You chosed $IP ..  Creating new CCD File..";
-# Check if choosen ip is already exit
-if grep -q $IP $CCD_DIR/*;
- then
-     echo "ERROR: The ip '$IP' is already used by:"
-     echo -e "$(grep $IP $CCD_DIR/*)\n"
-     read -p "enter another Static ip address for the user: " -i $DEF_IP -e IP;
-     read -p "enter another Gateway ip address for the user: " -i $DEF_IP -e IPGW;
- else
-	# create ccd file
-	echo "ifconfig-push $IP $IPGW"> $CCD_FILE;
-	# Setting Permissions for CCD File
-	chown nobody:nogroup $CCD_FILE;
-	echo "Done"
-fi
+                                }
 
+        ccd_creation;
 
+                        # Check if choosen ip is already exit
+                        while grep -q $IP $CCD_DIR/* ;
+                          do
+                          echo -e "\e[1;31mERROR: he ip '$IP' is already used by:\e[0m"
+                          echo -e "$(grep $IP $CCD_DIR/*)\n"
+                          read -n 1 -s -r -p "Press any key to continue"
+                          ccd_creation;
+                        done
+
+                                # create ccd file
+                                  echo "ifconfig-push $IP $IPGW"> $CCD_FILE;
+                                # Setting Permissions for CCD File
+                                  chown nobody:nogroup $CCD_FILE;
+                                  echo "Done"
+
+T
 
 # TODO #
 # 1. Present available ip in ccd menu
-# 2. Arrange ip list by order
 
 }
 
