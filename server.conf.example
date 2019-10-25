@@ -1,5 +1,5 @@
-port 1199
-proto udp
+port 1194
+proto tcp
 dev tun
 
 ca ca.crt
