@@ -1,0 +1,65 @@
+port 1199
+proto udp
+dev tun
+
+ca ca.crt
+cert gb2-server.crt
+key gb2-server.key
+dh dh2048.pem
+
+server 10.8.0.0 255.255.255.0
+
+ifconfig-pool-persist ipp.txt
+
+client-config-dir ccd
+
+## Subnets:
+# Admins
+route 10.8.1.0 255.255.255.0
+# Users
+route 10.8.2.0 255.255.255.0
+# Devs
+route 10.8.3.0 255.255.255.0
+# Guests
+route 10.8.4.0 255.255.255.0
+
+
+push "redirect-gateway def1 bypass-dhcp"
+push "dhcp-option DNS 192.168.1.1"
+push "dhcp-option DOMAIN example.local"
+
+
+keepalive 10 120
+
+key-direction 0
+
+tls-auth ta.key 0
+
+# Disable the key renegotiation timer.
+reneg-sec 0
+
+cipher AES-256-CBC
+comp-lzo
+
+max-clients 15
+
+;non-Windows systems.
+user nobody
+group nogroup
+
+#persist-key
+persist-tun
+
+status openvpn-status.log
+
+#log         /var/log/openvpn.log
+log-append  /var/log/openvpn.log
+
+verb 3
+;mute 20
+crl-verify /etc/openvpn/crl.pem
+#LDAP Plugin
+plugin /usr/local/lib/openvpn-auth-ldap.so /etc/openvpn/auth-ldap
+
+#Google Authenthecator Plugin
+plugin /usr/lib/openvpn/openvpn-otp.so "password_is_cr=1 otp_secrets=/etc/openvpn/google-authenticator/otp-secrets"
