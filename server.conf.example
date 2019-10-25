@@ -61,5 +61,5 @@ crl-verify /etc/openvpn/crl.pem
 #LDAP Plugin
 plugin /usr/local/lib/openvpn-auth-ldap.so /etc/openvpn/auth-ldap
 
-#Google Authenthecator Plugin
+#Google Authenticator  Plugin
 plugin /usr/lib/openvpn/openvpn-otp.so "password_is_cr=1 otp_secrets=/etc/openvpn/google-authenticator/otp-secrets"
