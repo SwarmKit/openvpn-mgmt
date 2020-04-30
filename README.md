@@ -1,11 +1,11 @@
 # openvpn-mgmt
 openvpn-mgmt is an easy user management script
-this scritp will:
--create vpn users by a base profile
--allow management of users ip's , groups  (openvpn ccd)
--send email to users 
--manage Google Authenthecator tokens easly
--email profiles otp link ot users
+## this script will:
+* create vpn users by a base profile
+* allow management of users ip's , groups  (openvpn ccd)
+* send email to users 
+* manage Google Authenthecator tokens easly
+* email profiles otp link ot users
 
 
 # Reqiured Packages
